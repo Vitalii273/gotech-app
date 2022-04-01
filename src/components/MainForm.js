@@ -4,10 +4,10 @@ import {useFormik} from "formik";
 import {
     Button,
 } from "@mui/material";
-import {validationSchema} from "./utils/formUtils";
-import Language from "./common/Language";
-import Describe from "./common/Describe";
-import Feedback from "./common/Feedback";
+import {validationSchema} from "../utils/formUtils";
+import Language from "../common/Language";
+import Describe from "../common/Describe";
+import Feedback from "../common/Feedback";
 
 const MainForm = () => {
     const formik = useFormik({
