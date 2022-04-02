@@ -1,25 +1,16 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import {useFormik} from "formik";
-import {Button} from "@mui/material";
-import {validationSchema} from "../utils/formUtils";
-import Language from "../common/Language";
+import Languages from "../common/Languages";
 import Describe from "../common/Describe";
-import Feedback from "../common/Feedback";
-import {getInitialValuesSelector} from "../store/mainState/selectors";
-import {useSelector} from "react-redux";
+import {validateForm} from "../utils/formUtils";
+import {Form, Formik} from "formik";
+import {Button} from "@mui/material";
+import Feedbacks from "../common/Feedback";
 
 const MainForm = () => {
-    const initialValues = useSelector(getInitialValuesSelector);
-
-
-    const formik = useFormik({
-        initialValues: initialValues,
-        validate: validationSchema,
-        onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
-        },
-    });
+    const onSubmit = (values) => {
+        alert(`You said "${values.radioGroup, values.feedbacks}!"`);
+    };
     return (
         <Box
             sx={{
@@ -27,16 +18,28 @@ const MainForm = () => {
             }}
             autoComplete="off"
         >
-            <form onSubmit={formik.handleSubmit}>
-                <Language formik={formik}/>
-                <Describe formik={formik}/>
-                <Feedback formik={formik}/>
-                <div>
-                    <Button color="primary" variant="contained" fullWidth type="submit">
-                        Submit
-                    </Button>
-                </div>
-            </form>
+            <Formik
+                initialValues={{
+                    languages: "",
+                    feedbacks: "",
+                    description:"",
+                }}
+                validate={validateForm}
+                onSubmit={onSubmit}
+            >
+                {() => (
+                    <Form>
+                        <Languages/>
+                        <Describe/>
+                        <Feedbacks/>
+                        <div className="activation-buttons">
+                            <Button color="primary" type="submit">
+                                Submit
+                            </Button>
+                        </div>
+                    </Form>
+                )}
+            </Formik>
         </Box>
     );
 }

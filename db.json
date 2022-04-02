@@ -1,19 +1,6 @@
 {
   "questionnaires": [
     {
-      "id": "initialValues",
-      "values": {
-        "answer": "",
-        "javaScript": false,
-        "typeScript": false,
-        "coffeeScript": false,
-        "easy": false,
-        "normal": false,
-        "hard": false,
-        "other": false
-      }
-    },
-    {
       "id": "languages",
       "title": "What language is your favorite?",
       "questions": [

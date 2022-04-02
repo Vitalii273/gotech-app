@@ -1,25 +1,26 @@
 import React from 'react';
 import CardContent from "@mui/material/CardContent";
-import {ThemeProvider, Typography} from "@mui/material";
+import {TextField, ThemeProvider, Typography} from "@mui/material";
 import {customTheme} from "../style/muiThemes";
-import TextField from "@mui/material/TextField";
 import Card from "@mui/material/Card";
+import {Field} from "formik";
 
-const Describe = ({formik}) => {
+const Describe = () => {
+
     return (
         <Card sx={{width: '50ch', marginTop: '15px'}}>
             <CardContent>
                 <ThemeProvider theme={customTheme}>
                     <Typography variant="title">What do you like about programming?</Typography>
                 </ThemeProvider>
-                <TextField
-                    fullWidth
-                    id="answer"
-                    name="answer"
+                <Field
+                    name="description"
+                    id="description"
                     label="Your answer"
-                    value={formik.values.answer}
-                    onChange={formik.handleChange}
                     variant="filled"
+                    margin="dense"
+                    fullWidth
+                    component={TextField}
                     sx={{
                         '&.MuiTextField-root': {
                             margin: 0,
