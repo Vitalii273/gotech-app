@@ -16,13 +16,16 @@ import {useSelector} from "react-redux";
 
 const Feedback = ({formik}) => {
     const feedbacks = useSelector(getFeedbackSelector)
+    const handleChange = (e) => {
+        console.log(e);
+        formik.handleChange(e);
+    }
     return (
         <Card sx={{width: '50ch', marginTop: '15px'}}>
             <CardContent>
-                {feedbacks &&
-                    <ThemeProvider theme={customTheme}>
-                        <Typography variant="title">{feedbacks.title}</Typography>
-                    </ThemeProvider>}
+                {feedbacks && <ThemeProvider theme={customTheme}>
+                    <Typography variant="title">{feedbacks.title}</Typography>
+                </ThemeProvider>}
                 <FormControl
                     required
                     error={Boolean(formik.errors)}
@@ -36,7 +39,7 @@ const Feedback = ({formik}) => {
                                 control={
                                     <Checkbox
                                         checked={formik.values[feedback.id]}
-                                        onChange={formik.handleChange}
+                                        onChange={(e) => handleChange(e)}
                                         name={feedback.id}/>
                                 }
                                 label={feedback.label}

@@ -30,7 +30,6 @@ export const getFeedbackAction = createAsyncThunk(
     async () => {
         try {
             const {data} = await getFeedback();
-            console.log(data)
             return data
         } catch (error) {
             console.log(error)

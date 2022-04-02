@@ -7,12 +7,14 @@ import {useEffect} from "react";
 import {useMain} from "./store/hooks/use-main";
 
 const App = () => {
-    const {mainControl} = useMain()
+    const {mainControl} = useMain();
+
     useEffect(() => {
-    mainControl.getInitialValues();
-    mainControl.getLanguages();
-    mainControl.getFeedback();
-    }, [])
+        mainControl.getInitialValues();
+        mainControl.getLanguages();
+        mainControl.getFeedback();
+    }, [mainControl]);
+
     return (
         <div className="App">
             <CssBaseline/>

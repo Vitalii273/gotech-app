@@ -10,7 +10,8 @@
         "easy": false,
         "normal": false,
         "hard": false,
-        "other": false
+        "other": false,
+        "selectedOption": ""
       }
     },
     {
