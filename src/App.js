@@ -3,8 +3,16 @@ import MainForm from "./components/MainForm";
 import {Container, CssBaseline} from "@mui/material";
 import Header from "./components/Header";
 import Box from "@mui/material/Box";
+import {useEffect} from "react";
+import {useMain} from "./store/hooks/use-main";
 
 const App = () => {
+    const {mainControl} = useMain()
+    useEffect(() => {
+    mainControl.getInitialValues();
+    mainControl.getLanguages();
+    mainControl.getFeedback();
+    }, [])
     return (
         <div className="App">
             <CssBaseline/>

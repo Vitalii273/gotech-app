@@ -11,14 +11,18 @@ import {
 } from "@mui/material";
 import {customTheme} from "../style/muiThemes";
 import Card from "@mui/material/Card";
+import {getFeedbackSelector} from "../store/mainState/selectors";
+import {useSelector} from "react-redux";
 
 const Feedback = ({formik}) => {
+    const feedbacks = useSelector(getFeedbackSelector)
     return (
         <Card sx={{width: '50ch', marginTop: '15px'}}>
             <CardContent>
-                <ThemeProvider theme={customTheme}>
-                    <Typography variant="title">How was the assigment?</Typography>
-                </ThemeProvider>
+                {feedbacks &&
+                    <ThemeProvider theme={customTheme}>
+                        <Typography variant="title">{feedbacks.title}</Typography>
+                    </ThemeProvider>}
                 <FormControl
                     required
                     error={Boolean(formik.errors)}
@@ -26,42 +30,19 @@ const Feedback = ({formik}) => {
                     component="fieldset"
                     variant="standard">
                     <FormGroup>
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    checked={formik.values.easy}
-                                    onChange={formik.handleChange}
-                                    name="easy"/>
-                            }
-                            label="Easy"
-                        />
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    checked={formik.values.normal}
-                                    onChange={formik.handleChange}
-                                    name="normal"/>
-                            }
-                            label="Normal"
-                        />
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    checked={formik.values.hard}
-                                    onChange={formik.handleChange}
-                                    name="hard"/>
-                            }
-                            label="Hard"
-                        />
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    checked={formik.values.other}
-                                    onChange={formik.handleChange}
-                                    name="other"/>
-                            }
-                            label="Other"
-                        />
+                        {feedbacks && feedbacks.questions.map((feedback, index) => (
+                            <FormControlLabel
+                                key={index}
+                                control={
+                                    <Checkbox
+                                        checked={formik.values[feedback.id]}
+                                        onChange={formik.handleChange}
+                                        name={feedback.id}/>
+                                }
+                                label={feedback.label}
+                            />
+                        ))}
+
                         <FormHelperText>You can display an error</FormHelperText>
                     </FormGroup>
                 </FormControl>

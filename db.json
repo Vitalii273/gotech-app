@@ -1,9 +1,74 @@
 {
   "questionnaires": [
     {
-      "id": 1,
+      "id": "initialValues",
+      "values": {
+        "answer": "",
+        "javaScript": false,
+        "typeScript": false,
+        "coffeeScript": false,
+        "easy": false,
+        "normal": false,
+        "hard": false,
+        "other": false
+      }
+    },
+    {
+      "id": "languages",
+      "title": "What language is your favorite?",
       "questions": [
-        "First question"
+        {
+          "id": "javaScript",
+          "label": "JavaScript"
+        },
+        {
+          "id": "typeScript",
+          "label": "TypeScript"
+        },
+        {
+          "id": "coffeeScript",
+          "label": "CoffeeScript"
+        }
+      ]
+    },
+    {
+      "id": "javaScript",
+      "questions": [
+        "Additional question"
+      ]
+    },
+    {
+      "id": "typeScript",
+      "questions": [
+        "Additional question"
+      ]
+    },
+    {
+      "id": "coffeeScript",
+      "questions": [
+        "Additional question"
+      ]
+    },
+    {
+      "id": "feedback",
+      "title": "How was the assigment?",
+      "questions": [
+        {
+          "id": "easy",
+          "label": "Easy"
+        },
+        {
+          "id": "normal",
+          "label": "Normal"
+        },
+        {
+          "id": "hard",
+          "label": "Hard"
+        },
+        {
+          "id": "other",
+          "label": "Other"
+        }
       ]
     }
   ]

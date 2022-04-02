@@ -11,14 +11,18 @@ import {
     Typography
 } from "@mui/material";
 import {customTheme} from "../style/muiThemes";
+import {useSelector} from "react-redux";
+import {getLanguagesSelector} from "../store/mainState/selectors";
 
 const Language = ({formik}) => {
+    const languages = useSelector(getLanguagesSelector);
+    console.log(languages)
     return (
         <Card sx={{width: '50ch', marginTop: '15px'}}>
             <CardContent>
-                <ThemeProvider theme={customTheme}>
-                    <Typography variant="title">What language is your favorite?</Typography>
-                </ThemeProvider>
+                {languages && <ThemeProvider theme={customTheme}>
+                    <Typography variant="title">{languages.title}</Typography>
+                </ThemeProvider>}
                 <FormControl
                     required
                     error={Boolean(formik.errors)}
@@ -26,33 +30,18 @@ const Language = ({formik}) => {
                     component="fieldset"
                     variant="standard">
                     <FormGroup>
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    checked={formik.values.javaScript}
-                                    onChange={formik.handleChange}
-                                    name="javaScript"/>
-                            }
-                            label="JavaScript"
-                        />
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    checked={formik.values.typeScript}
-                                    onChange={formik.handleChange}
-                                    name="typeScript"/>
-                            }
-                            label="TypeScript"
-                        />
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    checked={formik.values.coffeeScript}
-                                    onChange={formik.handleChange}
-                                    name="coffeeScript"/>
-                            }
-                            label="Coffeescript"
-                        />
+                        {languages && languages.questions.map((language, index) => (
+                            <FormControlLabel
+                                key={index}
+                                control={
+                                    <Checkbox
+                                        checked={formik.values[language.id]}
+                                        onChange={formik.handleChange}
+                                        name={language.id}/>
+                                }
+                                label={language.label}
+                            />
+                        ))}
                         <FormHelperText>You can display an error</FormHelperText>
                     </FormGroup>
                 </FormControl>
