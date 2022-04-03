@@ -21,7 +21,7 @@ const Languages = () => {
     const [value, setValue] = useState('');
     const handleChange = (e) => {
         mainControl.getAdditional(e.target.value);
-        setValue(e.target.value)
+        setValue(e.target.value);
     }
     const renderAdditional = (id) => {
         return id === value && additional?.questions.map((question, index)=>(

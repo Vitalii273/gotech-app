@@ -17,7 +17,9 @@ const App = () => {
     useEffect(() => {
         mainControl.getLanguages();
         mainControl.getFeedback();
-    }, [])
+        mainControl.getDescribe();
+    }, []);
+
     return (
         <div className="App">
             <CssBaseline/>

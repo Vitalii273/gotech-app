@@ -1,11 +1,12 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {getAdditionalQuestionAction, getFeedbackAction, getLanguagesAction} from '../actions';
+import {getAdditionalQuestionAction, getDescriptionAction, getFeedbackAction, getLanguagesAction} from '../actions';
 
 const initialState = {
     languages: null,
     feedback: null,
     additional: null,
     isLoading: false,
+    description: null,
 }
 
 const mainSlice = createSlice({
@@ -19,6 +20,15 @@ const mainSlice = createSlice({
             slice.isLoading = false;
             if (payload) {
                 slice.languages = payload;
+            }
+        },
+        [getDescriptionAction.pending]: (slice) => {
+            slice.isLoading = true;
+        },
+        [getDescriptionAction.fulfilled]: (slice, {payload}) => {
+            slice.isLoading = false;
+            if (payload) {
+                slice.description = payload;
             }
         },
         [getFeedbackAction.pending]: (slice) => {

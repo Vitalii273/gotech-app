@@ -1,11 +1,23 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {getAdditionalQuestion, getFeedback, getLanguages,} from "../api/Api";
+import {getAdditionalQuestion, getDescription, getFeedback, getLanguages,} from "../api/Api";
 
 export const getLanguagesAction = createAsyncThunk(
     'languages',
     async () => {
         try {
             const {data} = await getLanguages();
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+);
+
+export const getDescriptionAction = createAsyncThunk(
+    'description',
+    async () => {
+        try {
+            const {data} = await getDescription();
             return data
         } catch (error) {
             console.log(error)
