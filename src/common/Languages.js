@@ -20,7 +20,7 @@ const Languages = () => {
         <Card sx={{width: '50ch', marginTop: '15px'}}>
             <CardContent>
                 {languages && <ThemeProvider theme={customTheme}>
-                    <Typography variant="title">{languages.title}</Typography>
+                    <Typography variant="title" className="required">{languages.title}</Typography>
                 </ThemeProvider>}
                 <Field name="languages">
                     {({field, form}) => {

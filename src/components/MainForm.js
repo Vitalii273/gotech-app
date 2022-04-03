@@ -6,11 +6,13 @@ import {validateForm} from "../utils/formUtils";
 import {Form, Formik} from "formik";
 import {Button} from "@mui/material";
 import Feedbacks from "../common/Feedback";
+import './index.css'
 
 const MainForm = () => {
     const onSubmit = (values) => {
-        alert(`You said "${values.radioGroup, values.feedbacks}!"`);
+        alert(`You said "${JSON.stringify(values, null, 2)}!"`);
     };
+
     return (
         <Box
             sx={{
@@ -22,7 +24,7 @@ const MainForm = () => {
                 initialValues={{
                     languages: "",
                     feedbacks: "",
-                    description:"",
+                    answer: "",
                 }}
                 validate={validateForm}
                 onSubmit={onSubmit}

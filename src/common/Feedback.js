@@ -20,7 +20,7 @@ const Feedbacks = () => {
         <Card sx={{width: '50ch', marginTop: '15px'}}>
             <CardContent>
                 {feedbacks && <ThemeProvider theme={customTheme}>
-                    <Typography variant="title">{feedbacks.title}</Typography>
+                    <Typography variant="title" className="required">{feedbacks.title}</Typography>
                 </ThemeProvider>}
                 <Field name="feedbacks">
                     {({field, form}) => {

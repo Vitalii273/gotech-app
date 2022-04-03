@@ -1,0 +1,13 @@
+input {
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
+    background-color: #FFFFFF;
+    width: 100%;
+    height: 30px;
+}
+.required:after {
+    content:" *";
+    color: red;
+}

@@ -16,16 +16,17 @@ const FormikRadioGroup = ({field, form: {touched, errors}, name, options, childr
     const fieldName = name || field.name;
 
     return (
-        <React.Fragment>
+        <>
             <RadioGroup {...field} {...props} name={fieldName}>
                 {options ? renderOptions(options) : children}
             </RadioGroup>
-            {touched[fieldName] && errors[fieldName] && (
-                <span style={{color: "red", fontFamily: "sans-serif"}}>
+            {touched[fieldName]
+                && errors[fieldName]
+                && (
+                    <span style={{color: "red"}}>
           {errors[fieldName]}
-        </span>
-            )}
-        </React.Fragment>
+        </span>)}
+        </>
     );
 };
 
