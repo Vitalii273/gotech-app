@@ -1,21 +1,48 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {getFeedbackAction, getInitialValuesAction, getLanguagesAction} from '../actions';
+import {getFeedbackAction, getLanguagesAction} from '../actions';
 
 const initialState = {
-    initialValues: {
-        answer: "",
-        javaScript: false,
-        typeScript: false,
-        coffeeScript: false,
-        easy: false,
-        normal: false,
-        hard: false,
-        other: false,
-        selectedOption: "",
+    languages: {
+        "id": "languages",
+        "title": "What language is your favorite?",
+        "questions": [
+            {
+                "id": "javaScript",
+                "label": "JavaScript"
+            },
+            {
+                "id": "typeScript",
+                "label": "TypeScript"
+            },
+            {
+                "id": "coffeeScript",
+                "label": "CoffeeScript"
+            }
+        ]
     },
-    languages: null,
+    feedback: {
+        id: "feedback",
+        title: "How was the assigment?",
+        questions: [
+            {
+                "id": "easy",
+                "label": "Easy"
+            },
+            {
+                "id": "normal",
+                "label": "Normal"
+            },
+            {
+                "id": "hard",
+                "label": "Hard"
+            },
+            {
+                "id": "other",
+                "label": "Other"
+            }
+        ]
+    },
     additional: null,
-    feedback: null,
     isLoading: false,
 }
 
@@ -23,21 +50,20 @@ const mainSlice = createSlice({
     name: 'main',
     initialState: initialState,
     extraReducers: {
-        [getInitialValuesAction.fulfilled]: (slice, {payload}) => {
-            slice.isLoading = false;
-            if (payload) {
-                slice.initialValues = payload;
-            }
-        },
-        [getInitialValuesAction.pending]: (slice) => {
+        [getLanguagesAction.pending]: (slice) => {
             slice.isLoading = true;
         },
         [getLanguagesAction.fulfilled]: (slice, {payload}) => {
+            slice.isLoading = false;
             if (payload) {
                 slice.languages = payload;
             }
         },
+        [getFeedbackAction.pending]: (slice) => {
+            slice.isLoading = true;
+        },
         [getFeedbackAction.fulfilled]: (slice, {payload}) => {
+            slice.isLoading = false;
             if (payload) {
                 slice.feedback = payload;
             }

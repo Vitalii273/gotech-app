@@ -4,34 +4,34 @@ import {
     Radio,
     ThemeProvider,
 } from "@mui/material";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import Card from "@mui/material/Card";
-import {getFeedbackSelector} from "../store/mainState/selectors";
 import {useSelector} from "react-redux";
-import {Field} from "formik";
+import { getLanguagesSelector} from "../store/mainState/selectors";
+import { Field} from "formik";
 import FormikRadioGroup from "./FormikRadioGroup";
-
+import Card from "@mui/material/Card";
 import {customTheme} from "../style/muiThemes";
+import Typography from "@mui/material/Typography";
+import CardContent from "@mui/material/CardContent";
 
-const Feedbacks = () => {
-    const feedbacks = useSelector(getFeedbackSelector)
+const Languages = () => {
+    const languages = useSelector(getLanguagesSelector);
+
     return (
         <Card sx={{width: '50ch', marginTop: '15px'}}>
             <CardContent>
-                {feedbacks && <ThemeProvider theme={customTheme}>
-                    <Typography variant="title">{feedbacks.title}</Typography>
+                {languages && <ThemeProvider theme={customTheme}>
+                    <Typography variant="title">{languages.title}</Typography>
                 </ThemeProvider>}
-                <Field name="feedbacks">
+                <Field name="languages">
                     {({field, form}) => {
                         return (
                             <FormikRadioGroup form={form} field={field}>
-                                {feedbacks && feedbacks.questions.map((feedback) => (
+                                {languages && languages.questions.map((language) => (
                                     <FormControlLabel
-                                        key={feedback.id}
-                                        value={feedback.id}
+                                        key={language.id}
+                                        value={language.id}
                                         control={<Radio/>}
-                                        label={feedback.label}
+                                        label={language.label}
                                     />
                                 ))}
                             </FormikRadioGroup>
@@ -43,4 +43,4 @@ const Feedbacks = () => {
     );
 };
 
-export default Feedbacks;
+export default Languages;

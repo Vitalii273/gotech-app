@@ -1,37 +1,16 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import {Field, Formik, Form} from "formik";
-import {
-    Button,
-    Checkbox,
-    FormControl,
-    FormControlLabel,
-    FormGroup,
-    FormHelperText,
-    FormLabel,
-    Grid, Radio, Typography
-} from "@mui/material";
-import {validationSchema} from "../utils/formUtils";
-import Language from "../common/Language";
 import Describe from "../common/Describe";
-import Feedback from "../common/Feedback";
-import {getInitialValuesSelector} from "../store/mainState/selectors";
-import {useSelector} from "react-redux";
-import feedback from "../common/Feedback";
-import {onSubmit} from "./onSubmit";
-import * as Yup from "yup";
+import Languages from "../common/Languages";
+import {validateForm} from "../utils/formUtils";
+import {Form, Formik} from "formik";
+import {Button} from "@mui/material";
+import Feedbacks from "../common/Feedback";
 
 const MainForm = () => {
-    const initialValues = useSelector(getInitialValuesSelector);
-
-
-    const SignupSchema = Yup.object().shape({
-        // checkboxes: Yup.array()
-        //     .min(2, "Too Few!")
-        //     .max(2, "Too Many!"),
-        stooge: Yup.string().required("Required"),
-    })
-
+    const onSubmit = (values) => {
+        alert(`You said "${values.radioGroup, values.feedbacks}!"`);
+    };
     return (
         <Box
             sx={{
@@ -40,75 +19,24 @@ const MainForm = () => {
             autoComplete="off"
         >
             <Formik
-                onSubmit={onSubmit}
                 initialValues={{
-                    stooge: "",
-                    notes:""
+                    languages: "",
+                    feedbacks: "",
+                    description:"",
                 }}
-                validationSchema={SignupSchema}
+                validate={validateForm}
+                onSubmit={onSubmit}
             >
-                {props => (
-                    <Form onSubmit={props.handleSubmit}>
-                        <Grid item xs={12}>
-                            <FormControl
-                                component="fieldset"
-                            >
-                                <Field
-                                    id="stooge"
-                                    name="stooge"
-                                    label="Best Stooge"
-                                    component={RadioGroup}
-                                >
-                                    <FormLabel component="legend">Best Stooge</FormLabel>
-                                    <FormControlLabel
-                                        value="larry"
-                                        control={<Radio/>}
-                                        label="Larry"
-                                    />
-                                    <FormControlLabel
-                                        value="moe"
-                                        control={<Radio/>}
-                                        label="Moe"
-                                    />
-                                    <FormControlLabel
-                                        value="curly"
-                                        control={<Radio/>}
-                                        label="Curly"
-                                    />
-                                </Field>
-                            </FormControl>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Field
-                                name="notes"
-                                id="filled-textarea"
-                                label="Notes"
-                                placeholder="Notes"
-                                multiline
-                                fullWidth
-                                margin="normal"
-                                variant="filled"
-                                component={TextField}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                color="primary"
-                            >
+                {() => (
+                    <Form>
+                        <Languages/>
+                        <Describe/>
+                        <Feedbacks/>
+                        <div className="activation-buttons">
+                            <Button color="primary" type="submit">
                                 Submit
                             </Button>
-                        </Grid>
-                        <Typography variant="caption" display="block" gutterBottom>
-                            Errors
-                        </Typography>
-                        <pre>{JSON.stringify(props.errors, null, 2)}</pre>
-                        <Typography variant="caption" display="block" gutterBottom>
-                            Values
-                        </Typography>
-                        <pre>{JSON.stringify(props.values, null, 2)}</pre>
+                        </div>
                     </Form>
                 )}
             </Formik>

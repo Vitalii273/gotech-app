@@ -1,11 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import {
-    Checkbox,
     FormControl,
-    FormControlLabel, FormGroup,
-    FormHelperText, FormLabel, Radio,
+    FormControlLabel,
+    FormLabel, Radio,
     RadioGroup,
     ThemeProvider,
     Typography
@@ -15,7 +14,7 @@ import {customTheme} from "../style/muiThemes";
 import {useSelector} from "react-redux";
 import {getLanguagesSelector} from "../store/mainState/selectors";
 
-const Language = () => {
+const Languages = () => {
     const languages = useSelector(getLanguagesSelector);
     return (
         <Card sx={{width: '50ch', marginTop: '15px'}}>
@@ -48,4 +47,4 @@ const Language = () => {
     );
 };
 
-export default Language;
+export default Languages;
