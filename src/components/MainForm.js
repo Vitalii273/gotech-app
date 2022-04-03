@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Describe from "../common/Describe";
+import Description from "../common/Description";
 import Languages from "../common/Languages";
 import {validateForm} from "../utils/formUtils";
 import {Form, Formik} from "formik";
@@ -25,7 +25,8 @@ const MainForm = () => {
                     languages: "",
                     additional: "",
                     feedbacks: "",
-                    answer: "",
+                    description: "",
+                    otherAnswer: "",
                 }}
                 validate={validateForm}
                 onSubmit={onSubmit}
@@ -33,7 +34,7 @@ const MainForm = () => {
                 {() => (
                     <Form>
                         <Languages/>
-                        <Describe/>
+                        <Description/>
                         <Feedbacks/>
                         <div className="activation-buttons">
                             <Button color="primary" type="submit">

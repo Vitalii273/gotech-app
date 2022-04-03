@@ -7,7 +7,7 @@ import {Field} from "formik";
 import {getDescriptionSelector} from "../store/mainState/selectors";
 import {useSelector} from "react-redux";
 
-const Describe = () => {
+const Description = () => {
     const describeQuestion = useSelector(getDescriptionSelector)
 
     return describeQuestion && describeQuestion?.questions.map((question, index) =>(
@@ -16,10 +16,10 @@ const Describe = () => {
                 <ThemeProvider theme={customTheme}>
                     <Typography variant="title">{question}</Typography>
                 </ThemeProvider>
-                <Field id="answer" name="answer" placeholder="Your answer"/>
+                <Field id="description" name="description" placeholder="Your answer"/>
             </CardContent>
         </Card>
     ))
 };
 
-export default Describe;
+export default Description;
