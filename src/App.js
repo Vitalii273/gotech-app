@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import MainForm from "./components/MainForm";
 import {Container, CssBaseline} from "@mui/material";
