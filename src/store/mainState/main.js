@@ -1,47 +1,9 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {getFeedbackAction, getLanguagesAction} from '../actions';
+import {getAdditionalQuestionAction, getFeedbackAction, getLanguagesAction} from '../actions';
 
 const initialState = {
-    languages: {
-        "id": "languages",
-        "title": "What language is your favorite?",
-        "questions": [
-            {
-                "id": "javaScript",
-                "label": "JavaScript"
-            },
-            {
-                "id": "typeScript",
-                "label": "TypeScript"
-            },
-            {
-                "id": "coffeeScript",
-                "label": "CoffeeScript"
-            }
-        ]
-    },
-    feedback: {
-        id: "feedback",
-        title: "How was the assigment?",
-        questions: [
-            {
-                "id": "easy",
-                "label": "Easy"
-            },
-            {
-                "id": "normal",
-                "label": "Normal"
-            },
-            {
-                "id": "hard",
-                "label": "Hard"
-            },
-            {
-                "id": "other",
-                "label": "Other"
-            }
-        ]
-    },
+    languages: null,
+    feedback: null,
     additional: null,
     isLoading: false,
 }
@@ -66,6 +28,15 @@ const mainSlice = createSlice({
             slice.isLoading = false;
             if (payload) {
                 slice.feedback = payload;
+            }
+        },
+        [getAdditionalQuestionAction.pending]: (slice) => {
+            slice.isLoading = true;
+        },
+        [getAdditionalQuestionAction.fulfilled]: (slice, {payload}) => {
+            slice.isLoading = false;
+            if (payload) {
+                slice.additional = payload;
             }
         },
     }

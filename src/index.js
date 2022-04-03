@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import App from './App';
 import {store} from './store';
 import reportWebVitals from './reportWebVitals';
-import {appUrl} from "./consts/constants";
 import './index.css';
 
 const container = document.getElementById('root');
@@ -16,7 +15,7 @@ const app = (
         <BrowserRouter>
             <Provider store={store}>
                 <Routes>
-                    <Route exact path={`/${appUrl}`} element={<App/>}/>
+                    <Route exact path='/' element={<App/>}/>
                 </Routes>
             </Provider>
         </BrowserRouter>

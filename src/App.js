@@ -9,6 +9,7 @@ import {getLoaderSelector} from "./store/mainState/selectors";
 import {useSelector} from "react-redux";
 import LinearLoader from "./common/Loader";
 
+
 const App = () => {
     const {mainControl} = useMain();
     const isLoading = useSelector(getLoaderSelector);

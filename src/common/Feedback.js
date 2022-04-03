@@ -26,7 +26,7 @@ const Feedbacks = () => {
                     {({field, form}) => {
                         return (
                             <FormikRadioGroup form={form} field={field}>
-                                {feedbacks && feedbacks.questions.map((feedback) => (
+                                {feedbacks && feedbacks?.questions.map((feedback) => (
                                     <FormControlLabel
                                         key={feedback.id}
                                         value={feedback.id}

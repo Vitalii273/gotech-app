@@ -23,6 +23,7 @@ const MainForm = () => {
             <Formik
                 initialValues={{
                     languages: "",
+                    additional:"",
                     feedbacks: "",
                     answer: "",
                 }}

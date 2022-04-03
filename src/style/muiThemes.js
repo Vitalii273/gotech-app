@@ -28,6 +28,14 @@ export const customTheme = createTheme({
             alignItems: 'flex-start',
             alignContent: 'flex-start',
         },
+        additional: {
+            fontSize: '15px',
+            display: 'flex',
+            flexDirection: 'row',
+            flexWrap: 'nowrap',
+            alignItems: 'flex-start',
+            alignContent: 'flex-start',
+        },
         required: {
             fontSize: '10px',
             color: 'red',

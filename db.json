@@ -21,19 +21,19 @@
     {
       "id": "javaScript",
       "questions": [
-        "Additional question"
+        "Why do you like JavaScript?"
       ]
     },
     {
       "id": "typeScript",
       "questions": [
-        "Additional question"
+        "Why do you like TypeScript?"
       ]
     },
     {
       "id": "coffeeScript",
       "questions": [
-        "Additional question"
+        "Why do you like CoffeeScript?"
       ]
     },
     {

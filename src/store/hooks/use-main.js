@@ -1,5 +1,5 @@
 import {useDispatch} from "react-redux";
-import {getFeedbackAction, getLanguagesAction} from "../actions";
+import {getAdditionalQuestionAction, getFeedbackAction, getLanguagesAction} from "../actions";
 
 export const useMain = () => {
     const dispatch = useDispatch();
@@ -7,6 +7,7 @@ export const useMain = () => {
         mainControl: {
             getLanguages: () => dispatch(getLanguagesAction()),
             getFeedback: () => dispatch(getFeedbackAction()),
+            getAdditional: (id) => dispatch(getAdditionalQuestionAction(id)),
         }
     }
 }
