@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import {FormControlLabel, Radio, RadioGroup} from "@mui/material";
 
 const renderOptions = (options) => {
@@ -12,7 +12,7 @@ const renderOptions = (options) => {
     ));
 };
 
-const FormikRadioGroup = ({field, form: {touched, errors}, name, options, children, ...props}) => {
+const FormikRadioGroup = memo(({field, form: {touched, errors}, name, options, children, ...props}) => {
     const fieldName = name || field.name;
 
     return (
@@ -28,6 +28,6 @@ const FormikRadioGroup = ({field, form: {touched, errors}, name, options, childr
         </span>)}
         </>
     );
-};
+});
 
 export default FormikRadioGroup;

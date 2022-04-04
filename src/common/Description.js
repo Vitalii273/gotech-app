@@ -1,25 +1,22 @@
-import React from 'react';
+import React, {memo} from 'react';
 import CardContent from "@mui/material/CardContent";
-import {ThemeProvider, Typography} from "@mui/material";
-import {customTheme} from "../style/muiThemes";
+import {Typography} from "@mui/material";
 import Card from "@mui/material/Card";
 import {Field} from "formik";
 import {getDescriptionSelector} from "../store/mainState/selectors";
 import {useSelector} from "react-redux";
 
-const Description = () => {
+const Description = memo(() => {
     const describeQuestion = useSelector(getDescriptionSelector)
 
-    return describeQuestion && describeQuestion?.questions.map((question, index) =>(
+    return describeQuestion && describeQuestion?.questions.map((question, index) => (
         <Card key={index} sx={{width: '50ch', marginTop: '15px'}}>
             <CardContent>
-                <ThemeProvider theme={customTheme}>
-                    <Typography variant="title">{question}</Typography>
-                </ThemeProvider>
+                <Typography variant="title">{question}</Typography>
                 <Field id="description" name="description" placeholder="Your answer"/>
             </CardContent>
         </Card>
     ))
-};
+});
 
 export default Description;

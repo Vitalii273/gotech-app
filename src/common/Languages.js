@@ -1,20 +1,18 @@
-import React, {useState} from 'react';
+import React, {memo, useState} from 'react';
 import {
     FormControlLabel,
     Radio,
-    ThemeProvider,
 } from "@mui/material";
 import {useSelector} from "react-redux";
 import {getAdditionalSelector, getLanguagesSelector} from "../store/mainState/selectors";
 import {Field} from "formik";
 import FormikRadioGroup from "./FormikRadioGroup";
 import Card from "@mui/material/Card";
-import {customTheme} from "../style/muiThemes";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 import {useMain} from "../store/hooks/use-main";
 
-const Languages = () => {
+const Languages = memo(() => {
     const languages = useSelector(getLanguagesSelector);
     const additional = useSelector(getAdditionalSelector);
     const {mainControl} = useMain();
@@ -24,13 +22,11 @@ const Languages = () => {
         setValue(e.target.value);
     }
     const renderAdditional = (id) => {
-        return id === value && additional?.questions.map((question, index)=>(
-            <React.Fragment key={index}>
-                <ThemeProvider theme={customTheme}>
+        return id === value && additional?.questions.map((question, index) => (
+                <React.Fragment key={index}>
                     <Typography variant="additional">{question}</Typography>
-                </ThemeProvider>
-                <Field id="additional" name="additional" placeholder="Your answer"/>
-            </React.Fragment>
+                    <Field id="additional" name="additional" placeholder="Your answer"/>
+                </React.Fragment>
             )
         )
     }
@@ -38,9 +34,11 @@ const Languages = () => {
     return (
         <Card sx={{width: '50ch', marginTop: '15px'}}>
             <CardContent>
-                {languages && <ThemeProvider theme={customTheme}>
-                    <Typography variant="title" className="required">{languages.title}</Typography>
-                </ThemeProvider>}
+                {languages &&
+                    <Typography variant="title" className="required">
+                        {languages.title}
+                    </Typography>
+                }
                 <Field name="languages">
                     {({field, form}) => {
                         return (
@@ -63,6 +61,6 @@ const Languages = () => {
             </CardContent>
         </Card>
     );
-};
+});
 
 export default Languages;

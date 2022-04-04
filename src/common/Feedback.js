@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
+import React, {memo, useState} from 'react';
 import {
     FormControlLabel,
     Radio,
-    ThemeProvider,
 } from "@mui/material";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -12,9 +11,7 @@ import {useSelector} from "react-redux";
 import {Field} from "formik";
 import FormikRadioGroup from "./FormikRadioGroup";
 
-import {customTheme} from "../style/muiThemes";
-
-const Feedbacks = () => {
+const Feedbacks = memo(() => {
     const feedbacks = useSelector(getFeedbackSelector)
     const [value, setValue] = useState('');
     const handleChange = (e) => {
@@ -24,13 +21,16 @@ const Feedbacks = () => {
         return id === value && value === "other" && (
             <Field id="otherAnswer" name="otherAnswer" placeholder="Your answer"/>
         )
-    }
+    };
+
     return (
         <Card sx={{width: '50ch', marginTop: '15px'}}>
             <CardContent>
-                {feedbacks && <ThemeProvider theme={customTheme}>
-                    <Typography variant="title" className="required">{feedbacks.title}</Typography>
-                </ThemeProvider>}
+                {feedbacks &&
+                    <Typography variant="title" className="required">
+                        {feedbacks.title}
+                    </Typography>
+                }
                 <Field name="feedbacks">
                     {({field, form}) => {
                         return (
@@ -53,6 +53,6 @@ const Feedbacks = () => {
             </CardContent>
         </Card>
     );
-};
+});
 
 export default Feedbacks;
